@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube Video Dublaj</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Video Dublaj</h1>
+        <div class="input-container">
+            <input type="text" id="videoUrl" placeholder="YouTube Video URL">
+            <button onclick="loadVideo()">Video Yükle</button>
+        </div>
+        
+        <div class="video-container">
+            <div id="player"></div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="startDubbing()">Dublaj Başlat</button>
+            <button onclick="playDubbed()">Dublajlı Oynat</button>
+        </div>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        let player;
+        
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '450',
+                width: '800',
+                videoId: '',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            console.log('Player hazır');
+        }
+
+        function onPlayerStateChange(event) {
+            console.log('Player durumu değişti:', event.data);
+        }
+
+        function getVideoId(url) {
+            const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+            const match

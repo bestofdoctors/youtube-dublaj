@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+python-multipart
+SpeechRecognition
+googletrans==3.1.0a0
+gTTS
+moviepy
+aiohttp
+jinja2
