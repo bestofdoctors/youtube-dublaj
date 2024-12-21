@@ -1,4 +1,3 @@
-import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -36,10 +35,3 @@ async def create_dubbing(video_id: str, text: str, lang: str = "tr"):
 @app.get("/test")
 async def test():
     return {"message": "API çalışıyor!"}
-
-# Ngrok tünelini başlatın
-public_url = ngrok.connect(port='8000')
-print(f"Public URL: {public_url}")
-
-# Uvicorn'u başlatın
-uvicorn.run(app, host='0.0.0.0', port=8000)
